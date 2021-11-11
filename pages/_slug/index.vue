@@ -29,16 +29,26 @@
         </div>
       </div>
       <div>
-        <h1>{{ allCars.name }}</h1>
-        <div>
-          {{
-            allCars.description
-          }}
+        <Car :name="allCars.name" :description="allCars.description"/>
+      </div>
+    </div>
+    <form @submit.prevent="addComment">
+      <div class="flex lg:flex-row flex-col w-full">
+        <div class="w-1/6 mx-auto text-center">
+          <button type="submit" class="bg-green-400 px-3 py-2 rounded-md">ثبت</button>
+        </div>
+        <div class="comments w-5/6">
+        <textarea
+          class="border border-gray-300 rounded-lg container" id="" cols="30"
+          rows="5"
+          v-model="form.content"
+        ></textarea>
         </div>
       </div>
-      <div>
-        <Comment :comments="allCars.comments"/>
-      </div>
+    </form>
+
+    <div v-for="comments in allCars.comments" :key="comments.id">
+      <Comment @createReplies="addComment" :comments="comments.body" :id="comments.id" :parent="comments.parent"/>
     </div>
   </section>
 </template>
@@ -46,11 +56,15 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import Comment from "../../components/Comments/Comment";
+import Car from "../../components/Car";
 
 export default {
-  components: {Comment},
+  components: {Comment, Car},
   data() {
     return {
+      form: {
+        content: '',
+      },
       mainSrc: 'https://via.placeholder.com/640x480.png/007788?text=daniel'
     }
   },
@@ -62,6 +76,7 @@ export default {
   methods: {
     ...mapActions('car', ['fetchCar']),
 
+    // gallery
     changeImg(currentSrc) {
       let otherImg = document.querySelectorAll(".other-images")
       let mainImg = this.mainSrc
@@ -75,11 +90,39 @@ export default {
           this.mainSrc = mainImg
         }
       })
-    }
+    },
+
+    // add comment
+    addComment(value) {
+      /*   this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {
+           content: this.form.content
+         }) .then((r) => console.log(r,1))
+         .catch((e) => console.log(e,0))*/
+      if (value.replies) {
+        this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {value})
+          .then(() => {
+            this.successMes()
+          }).catch((e) => alert(e))
+          .catch((e) => console.log(e, 0))
+      } else {
+        this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {
+          content: this.form.content
+        })
+          .then(() => {
+            this.successMes()
+          }).catch((e) => alert(e))
+          .catch((e) => console.log(e, 0))
+      }
+    },
+
+    successMes() {
+      this.fetchCar(this.$route.params.slug)
+      this.form.content = ""
+    },
   },
 
   computed: {
     ...mapGetters('car', ['allCars']),
-  }
+  },
 }
 </script>

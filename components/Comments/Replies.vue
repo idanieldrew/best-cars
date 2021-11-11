@@ -7,19 +7,16 @@
         <div
           class="
             block
+            w-4/6
             px-5
             py-3
             mx-auto
             rounded
             my-3
             text-center
+            bg-gray-50
             border-2 border-blue-400
           "
-          :class="{'bg-gray-50' : parent,
-                      'bg-gray-200' : !parent,
-                      'w-4/6' : parent,
-                      'w-3/6' : !parent
-        }"
         >
           {{ comments }}
         </div>
@@ -35,7 +32,7 @@
           id=""
           cols="30"
           rows="5"
-          v-model="form.content"
+          placeholder="Write" v-model="content"
         ></textarea>
             </div>
           </div>
@@ -51,19 +48,31 @@
             </button>
           </div>
         </div>
-        <div v-for="comments in parent" :key="comments.id" v-if="parent">
-          <comments :comments="comments.body" :id="comments.id" :parent="comments.parent">
-          </comments>
-        </div>
+        <!--        <div
+                  class="
+                    block
+                    w-2/6
+                    mx-auto
+                    rounded
+                    my-3
+                    text-center
+                    bg-gray-200
+                    border-2 border-blue-400
+                  "
+                  v-for="replies in comment.parent"
+                  :key="replies.id"
+                >
+                  {{ replies.body }}
+                </div>-->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions} from "vuex";
 
 export default {
-  name: 'comments',
   props: {
     comments: {
       required: false,
@@ -74,30 +83,44 @@ export default {
       type: Number
     },
     parent: {
-      required: true,
+      required: false,
     }
   },
 
   data() {
     return {
-      form: {
-        content: '',
-        replies: null
-      },
-      reply: false,
-      // parent: true
+      content: '',
+      reply: false
     }
   },
 
   methods: {
+    ...mapActions('car', ['fetchCar']),
     addReply(id) {
-      this.form.replies = id
-      this.$emit("createReplies", this.form)
+      this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {
+        content: this.content,
+        reply: id
+      }).then(() => {
+        this.successMes()
+      }).catch((e) => alert(e))
     },
 
+    successMes() {
+      alert("ok")
+      window.scrollTo(0, 0)
+      this.fetchCar(this.$route.params.slug)
+    },
     showReply() {
       this.reply = !this.reply
     }
   },
+
+  /* computed: {
+     lenRep() {
+       this.comments.forEach((i) => {
+         console.log(i.parent.length)
+       })
+     }
+   },*/
 };
 </script>

@@ -15,9 +15,9 @@
       consequatur iusto autem facilis voluptates tenetur. Molestias, voluptas
       totam.
     </div>
-    <section class="hero">
+<!--    <section class="hero">
       <Hero/>
-    </section>
+    </section>-->
     <div
       class="
         content
@@ -52,7 +52,7 @@
 import {mapActions, mapGetters} from "vuex";
 import Hero from "@/components/Hero.vue";
 import Category from "@/components/Category.vue";
-import Car from "@/components/Car.vue";
+import Car from "@/components/Cars.vue";
 
 export default {
   components: {
@@ -65,7 +65,7 @@ export default {
     ...mapActions("car", ["fetchCars"]),
     ...mapActions("category", ['fetchCategories'])
   },
-  created() {
+  mounted() {
     this.fetchCars();
     this.fetchCategories()
   },

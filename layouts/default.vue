@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen">
+  <div class="h-full">
     <Navbar />
     <nuxt />
-    <Footer /> 
+    <Footer />
   </div>
 </template>
 

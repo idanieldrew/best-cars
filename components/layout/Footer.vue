@@ -22,7 +22,7 @@
         <div class="w-1/5 pr-36">
           <button @click.prevent="up"
                   class="
-              flex
+              lg:flex hidden
               bg-gray-100
               text-gray-400
               rounded-lg
