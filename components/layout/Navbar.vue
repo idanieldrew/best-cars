@@ -1,81 +1,93 @@
 <template>
-  <div>
-    <button
-      v-if="show"
-      @click="show = false"
-      class="inset-0 w-full h-screen fixed"
-    ></button>
-    <nav id="nav" class="w-full bg-gray-400 px-0 lg:px-6 py-1 lg:py-4">
-      <div class="flex lg:flex-row w-full flex-col mx-auto px-3 lg:px-5 py-5">
-        <div class="logo lg:flex hidden w-1/6">
-          <span class="font-bold text-black">Daniel</span>
-          <span class="font-bold text-white">Drew</span>
+  <nav id="nav" class="w-full bg-transparent px-0 lg:px-6 py-1 lg:py-4 shadow-2xl">
+    <div class="lg:flex block items-center justify-between w-full mx-auto px-0 lg:px-5 py-5">
+      <div class="flex flex-row w-full lg:w-1/6 lg:px-0 px-2">
+        <div class="logo font-bold text-xl flex w-1/2">
+          <span class="text-red-500">Drew</span>
+          <span class="text-black">Daniel</span>
         </div>
-        <button v-show="!isAllow" @click="toggleNav">close</button>
-        <div class="items mx-auto w-full lg:w-4/6 flex flex-col lg:flex-row">
-          <Item body="خانه" link="home"/>
+        <div class="hamburger block lg:hidden w-1/2 text-left">
+          <button v-show="isVisible" @click="toggle">
+            open
+          </button>
+          <button v-show="!isVisible" @click="toggle">
+            close
+          </button>
+        </div>
+      </div>
+      <div class="items mx-auto w-full lg:w-4/6 flex lg:block flex-col" :class="{hidden : ! isVisible}">
+        <div class="flex lg:flex-row flex-col lg:divide-none divide-y-2 divide-gray-300 lg:my-0 my-3">
+          <Item body="خانه" link="/"/>
+          <Item body="خانه" link="/"/>
+          <Item body="اطلاعات" link="info"/>
+          <Item body="اطلاعات" link="info"/>
+          <Item body="اطلاعات" link="info"/>
+          <Item body="اطلاعات" link="info"/>
           <Item body="اطلاعات" link="info"/>
           <Item body="درباره ما" link="about"/>
           <Item body="پروفایل" link="profile"/>
-          <div class="dropdowm relative py-2">
-            <button @click="toggle">test</button>
-            <div
-              class="
-                divide-y-2 divide-gray-300
-                z-50
-                rounded-lg
-                menu
-                absolute
-                bg-gray-100
-                text-sm
-                w-44
-                h-auto
-                flex flex-col
-              "
-              :class="{ hidden: !show }"
-              `
-            >
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
-              <div class="p-4 hover:bg-gray-300">
-                <router-link to="/">salam</router-link>
-              </div>
+        </div>
+<!--        <div class="dropdown relative">
+          <button @click="toggleMenu">
+            اطلاعات
+          </button>
+          <div v-show="showMenu"
+               class="
+                        divide-y-2 divide-gray-300
+                        z-50
+                        rounded-lg
+                        menu
+                        absolute
+                        bg-gray-100
+                        text-sm
+                        w-44
+                        h-auto
+                        lg:flex flex-col hidden
+                      "
+          >
+            <div class="p-4 hover:bg-gray-300">
+              <router-link to="/">salam</router-link>
+            </div>
+            <div class="p-4 hover:bg-gray-300">
+              <router-link to="/">salam</router-link>
+            </div>
+            <div class="p-4 hover:bg-gray-300">
+              <router-link to="/">salam</router-link>
+            </div>
+            <div class="p-4 hover:bg-gray-300">
+              <router-link to="/">salam</router-link>
+            </div>
+            <div class="p-4 hover:bg-gray-300">
+              <router-link to="/">salam</router-link>
             </div>
           </div>
-        </div>
-        <nuxt-link to="register" class="login w-1/6 text-left pl-5"
-          >Login/Register</nuxt-link
-        >
+        </div>-->
       </div>
+      <div class="w-1/6 text-left lg:block hidden">
+        <nuxt-link to="register" class="login w-1/6 text-left pl-5"
+        >Login/Register
+        </nuxt-link
+        >
+        <button
+          v-if="showMenu"
+          @click="showMenu = false"
+          class="inset-0 w-full h-screen fixed"
+        ></button>
+      </div>
+    </div>
     </nav>
-  </div>
 </template>
 
 <script>
 import Item from "./Navlink.vue";
-import {isVisible} from '@/static/js/navbar.js'
+import {useToggle} from "@/static/js/navbar.js";
 
 export default {
   name: "navbar",
 
- mounted() {
-  console.log(isVisible)
+  setup() {
+    let {isVisible, toggle} = useToggle();
+    return {isVisible, toggle};
   },
 
   components: {
@@ -84,13 +96,13 @@ export default {
 
   data() {
     return {
-      show: false,
+      showMenu: false,
     };
   },
 
   methods: {
-    toggle() {
-      this.show = !this.show;
+    toggleMenu() {
+      this.showMenu = !this.showMenu
     },
   },
 };

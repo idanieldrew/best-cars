@@ -55,8 +55,8 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import Comment from "../../components/Comments/Comment";
-import Car from "../../components/Car";
+import Comment from "../../../components/Comments/Comment";
+import Car from "../../../components/Car";
 
 export default {
   components: {Comment, Car},

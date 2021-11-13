@@ -1,17 +1,19 @@
+import {ref} from '@nuxtjs/composition-api'
+
 export function useToggle() {
-  let isVisible = false
+  let isVisible = ref(false)
 
 
   function show() {
-    isVisible = true;
+    isVisible.value = true;
   }
 
   function hide() {
-    isVisible = false;
+    isVisible.value = false;
   }
 
   function toggle() {
-    isVisible === true ? hide() : show()
+    isVisible.value === true ? hide() : show()
   }
 
   return {

@@ -1,6 +1,9 @@
 <template>
   <div class="landing-page divide-x-0">
     <!-- body section -->
+   <section class="hero">
+     <Hero/>
+   </section>
     <div class="my-5 mx-auto lg:text-center text-left lg:px-0 px-5">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid suscipit
       eos vero excepturi asperiores magnam totam ipsam eveniet eius nesciunt
@@ -15,9 +18,6 @@
       consequatur iusto autem facilis voluptates tenetur. Molestias, voluptas
       totam.
     </div>
-<!--    <section class="hero">
-      <Hero/>
-    </section>-->
     <div
       class="
         content
@@ -40,7 +40,7 @@
       <div
         class="products w-full lg:w-5/6 lg:grid lg:grid-cols-3 px-3 lg:pr-10"
       >
-        <div v-for="cars in allCars" :key="cars.slug">
+        <div class="cursor-pointer transform hover:translate-x-2 hover:translate-y-1 duration-1000" v-for="cars in allCars" :key="cars.slug">
           <Car :name="cars.name" :slug="cars.slug" :details="cars.details" :likes="cars.likes"/>
         </div>
       </div>

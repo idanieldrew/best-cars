@@ -2,7 +2,7 @@
   <div class="h-full">
     <Navbar />
     <nuxt />
-    <Footer />
+<!--    <Footer />-->
   </div>
 </template>
 

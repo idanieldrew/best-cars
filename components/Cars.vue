@@ -22,7 +22,7 @@
       />
     </div>
     <div class="font-extrabold text-sm my-3 pt-14 text-blue-400">
-      <nuxt-link :to="slug">
+      <nuxt-link :to="'cars/'+slug">
         {{ name }}
       </nuxt-link>
     </div>
