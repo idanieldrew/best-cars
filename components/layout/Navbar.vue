@@ -23,7 +23,6 @@
           <Item body="اطلاعات" link="info"/>
           <Item body="اطلاعات" link="info"/>
           <Item body="اطلاعات" link="info"/>
-          <Item body="اطلاعات" link="info"/>
           <Item body="درباره ما" link="about"/>
           <Item body="پروفایل" link="profile"/>
         </div>
@@ -64,8 +63,12 @@
         </div>-->
       </div>
       <div class="w-1/6 text-left lg:block hidden">
-        <nuxt-link to="register" class="login w-1/6 text-left pl-5"
-        >Login/Register
+        <nuxt-link to="registers" class="login w-1/6 text-left pl-5"
+        >Register
+        </nuxt-link
+        > /
+        <nuxt-link to="login" class="register w-1/6 text-left"
+        >Login
         </nuxt-link
         >
         <button

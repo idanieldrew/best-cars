@@ -1,7 +1,8 @@
 <template>
   <div class="landing-page divide-x-0">
     <!-- body section -->
-   <section class="hero">
+    {{ user }}
+    <section class="hero">
      <Hero/>
    </section>
     <div class="my-5 mx-auto lg:text-center text-left lg:px-0 px-5">
@@ -60,6 +61,8 @@ export default {
     Category,
     Car,
   },
+
+  middleware: "auth",
 
   methods: {
     ...mapActions("car", ["fetchCars"]),

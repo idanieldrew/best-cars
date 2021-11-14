@@ -94,10 +94,6 @@ export default {
 
     // add comment
     addComment(value) {
-      /*   this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {
-           content: this.form.content
-         }) .then((r) => console.log(r,1))
-         .catch((e) => console.log(e,0))*/
       if (value.replies) {
         this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {value})
           .then(() => {
