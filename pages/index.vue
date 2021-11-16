@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 import Hero from "@/components/Hero.vue";
 import Category from "@/components/Category.vue";
 import Car from "@/components/Cars.vue";
@@ -62,16 +62,12 @@ export default {
     Car,
   },
 
-  middleware: "auth",
+  async fetch({store}) {
+    await store.dispatch('car/fetchCars')
+    await store.dispatch('category/fetchCategories')
+  },
 
-  methods: {
-    ...mapActions("car", ["fetchCars"]),
-    ...mapActions("category", ['fetchCategories'])
-  },
-  mounted() {
-    this.fetchCars();
-    this.fetchCategories()
-  },
+  middleware: "auth",
 
   computed: {
     ...mapGetters("car", ["allCars"]),
