@@ -56,6 +56,7 @@ import Category from "@/components/Category.vue";
 import Car from "@/components/Cars.vue";
 
 export default {
+  name: 'cars',
   components: {
     Hero,
     Category,

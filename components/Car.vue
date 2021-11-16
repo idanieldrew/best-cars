@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Car.vue",
+  name: "car",
 
   props: {
     name: {

@@ -72,7 +72,7 @@
 
 <script>
 export default {
-  name: "Car.vue",
+  name: "cars",
 
   props: {
     name: {
@@ -98,9 +98,9 @@ export default {
   },
 
   computed: {
-    editDetails() {
+  /*  editDetails() {
       return this.details.substr(0, 15);
-    },
+    },*/
   },
 };
 </script>

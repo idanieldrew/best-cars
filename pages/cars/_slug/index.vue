@@ -16,7 +16,7 @@
             justify-items-center justify-center
           "
         >
-          <div class="images my-5" v-for="images in allCars.images" :key="images.slug">
+          <div class="images my-5" v-for="images in car.images" :key="images.slug">
             <ul>
               <li>
                 <img @click.prevent="changeImg(images.image)"
@@ -24,12 +24,11 @@
                      alt=""/>
               </li>
             </ul>
-
           </div>
         </div>
       </div>
       <div>
-        <Car :name="allCars.name" :description="allCars.description"/>
+        <Car :name="car.name" :description="car.description"/>
       </div>
     </div>
     <form @submit.prevent="addComment">
@@ -47,7 +46,7 @@
       </div>
     </form>
 
-    <div v-for="comments in allCars.comments" :key="comments.id">
+    <div v-for="comments in car.comments" :key="comments.id">
       <Comment @createReplies="addComment" :comments="comments.body" :id="comments.id" :parent="comments.parent"/>
     </div>
   </section>
@@ -56,9 +55,10 @@
 <script>
 import {mapGetters} from "vuex";
 import Comment from "../../../components/Comments/Comment";
-import Car from "../../../components/Car";
+import Car from "@/components/Car.vue";
 
 export default {
+  name: 'special-car',
   components: {Comment, Car},
   data() {
     return {
@@ -75,7 +75,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('car', ['allCars']),
+    ...mapGetters('car', ['car']),
   },
 
   /*mounted() {

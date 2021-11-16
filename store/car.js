@@ -3,13 +3,18 @@ const state = () => ({
 })
 
 const getters = {
-  allCars: state => state.cars
+  allCars: state => state.cars,
+
+  car: state => state.cars
 }
 
 const mutations = {
   GET_CARS(state, cars) {
     state.cars = cars
-  }
+  },
+  GET_CAR(state, car) {
+    state.cars = car
+  },
 }
 
 const actions = {
@@ -20,7 +25,7 @@ const actions = {
 
   async fetchCar({commit}, car) {
     let response = await this.$axios.get("cars/" + car)
-    commit('GET_CARS', response.data)
+    commit('GET_CAR', response.data)
   }
 }
 
