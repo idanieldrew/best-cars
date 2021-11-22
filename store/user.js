@@ -1,23 +1,34 @@
 import cookies from 'js-cookie'
+
 const state = () => ({
-  user: null
+  token: null
 })
 
 const getters = {
-  loged: state => !! state.user
+  isAuth: state => !!state.token
 }
 
 const mutations = {
-  LOGIN(state, userData) {
-    state.user = userData
+  SET_TOKEN(state, token) {
+    console.log(token, 7)
+    state.token = token
   }
 }
 
 const actions = {
-  async log({commit},data) {
-    let response = await this.$axios.post('/login',data)
-    // cookies.set()
-    commit('LOGIN', response.data)
+  setToken({commit}, {token, expires_in}) {
+    console.log(token, 1)
+    this.$axios.setToken(token, "Bearer")
+    const expiryTime = new Date(new Date().getTime() + expires_in * 1000)
+    console.log(expiryTime, 2)
+    cookies.set("x-access-token", token, {expires: expiryTime})
+    commit("SET_TOKEN", "Bearer" + token)
+  },
+
+  async refreshToken({dispatch}) {
+    const {token, expires_in} = await this.$axios.post('refresh')
+    console.log(token, expires_in, 41412)
+    dispatch('setToken', {token, expires_in})
   }
 }
 

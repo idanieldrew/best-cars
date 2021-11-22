@@ -57,6 +57,10 @@ export default {
     baseUrl: 'http://localhost:8000/api'
   },
 
+  router:{
+    middleware: 'refreshToken'
+  },
+
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 

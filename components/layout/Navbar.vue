@@ -63,14 +63,20 @@
         </div>-->
       </div>
       <div class="w-1/6 text-left lg:block hidden">
-        <nuxt-link to="registers" class="login w-1/6 text-left pl-5"
-        >Register
-        </nuxt-link
-        > /
-        <nuxt-link to="login" class="register w-1/6 text-left"
-        >Login
-        </nuxt-link
-        >
+        <div v-if="isLogin">
+          <nuxt-link to="">داشبورد</nuxt-link>
+        </div>
+        <div v-else>
+          <nuxt-link to="registers" class="login w-1/6 text-left pl-5"
+          >Register
+          </nuxt-link
+          >
+          /
+          <nuxt-link to="login" class="register w-1/6 text-left"
+          >Login
+          </nuxt-link
+          >
+        </div>
         <button
           v-if="showMenu"
           @click="showMenu = false"
@@ -108,5 +114,11 @@ export default {
       this.showMenu = !this.showMenu
     },
   },
+
+  computed: {
+    isLogin() {
+      return this.$store.getters["user/isAuth"]
+    }
+  }
 };
 </script>

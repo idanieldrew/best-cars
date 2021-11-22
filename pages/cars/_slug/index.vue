@@ -59,6 +59,7 @@ import Car from "@/components/Car.vue";
 
 export default {
   name: 'special-car',
+  middleware: 'auth',
   components: {Comment, Car},
   data() {
     return {

@@ -68,8 +68,6 @@ export default {
     await store.dispatch('category/fetchCategories')
   },
 
-  middleware: "auth",
-
   computed: {
     ...mapGetters("car", ["allCars"]),
     ...mapGetters('category', ['allCategories'])
