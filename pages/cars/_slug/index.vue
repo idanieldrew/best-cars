@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Comment from "../../../components/Comments/Comment";
 import Car from "@/components/Car.vue";
 
@@ -71,7 +71,6 @@ export default {
   },
 
   async fetch({store, params}) {
-    console.log(params)
     await store.dispatch('car/fetchCar', params.slug)
   },
 
@@ -79,13 +78,12 @@ export default {
     ...mapGetters('car', ['car']),
   },
 
-  /*mounted() {
+  mounted() {
     this.fetchCar(this.$route.params.slug)
-  },*/
+  },
 
   methods: {
-    // ...mapActions('car', ['fetchCar']),
-
+    ...mapActions('car', ["fetchCar"]),
     // gallery
     changeImg(currentSrc) {
       let otherImg = document.querySelectorAll(".other-images")

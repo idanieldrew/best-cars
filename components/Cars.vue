@@ -43,17 +43,6 @@
           </nuxt-link>
         </div>
       </div>
-      <!--      <div class="font-serif flex">
-              <span> {{ comments }} </span>
-              <div>
-                <nuxt-link to="/">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                    <path d="M0 0h24v24H0V0z" fill="none"/>
-                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-                  </svg>
-                </nuxt-link>
-              </div>
-            </div>-->
       <div class="font-serif flex">
         <span class="pl-1"> 123 </span>
         <div>
@@ -83,7 +72,7 @@ export default {
       type: String,
       required: true,
     },
-    details: {
+    details2: {
       type: String,
       required: true,
     },
@@ -91,16 +80,12 @@ export default {
       type: Number,
       required: true,
     },
-    /*   comments: {
-         type: Number,
-         required: true,
-       },*/
   },
 
   computed: {
-  /*  editDetails() {
-      return this.details.substr(0, 15);
-    },*/
+    editDetails() {
+      return this.details2.substr(0, 15);
+    },
   },
 };
 </script>

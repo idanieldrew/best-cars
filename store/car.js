@@ -1,11 +1,12 @@
 const state = () => ({
-  cars: []
+  cars: [],
+  car: []
 })
 
 const getters = {
   allCars: state => state.cars,
 
-  car: state => state.cars
+  car: state => state.car
 }
 
 const mutations = {
@@ -13,7 +14,7 @@ const mutations = {
     state.cars = cars
   },
   GET_CAR(state, car) {
-    state.cars = car
+    state.car = car
   },
 }
 

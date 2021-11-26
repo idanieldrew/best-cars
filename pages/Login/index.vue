@@ -20,15 +20,9 @@ export default {
         .then((res) => {
           let token = res.data.token
           let expires_in = res.data.expires_in
-          this.$store.dispatch('user/setToken', {token,expires_in})
+          this.$store.dispatch('user/setToken', token, expires_in)
           this.$router.push("/")
         }).catch((e) => console.log(e, 0))
-      /*
-      this.log(val)
-        .then(alert("ok"),
-          this.$router.push("/")
-        )
-        .catch((e) => console.log(e))*/
     },
   },
 };

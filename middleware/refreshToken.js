@@ -5,7 +5,6 @@ export default function ({store, redirect}) {
 
   if (!token) {
     store.dispatch('user/refreshToken')
-      .then((r) => console.log(r, 77))
-      .catch((e) => console.log(e,78))
+      .catch((e) => console.log(787))
   }
 }

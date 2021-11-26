@@ -1,6 +1,5 @@
 export default function ({store, redirect}) {
-  console.log(store.getters)/*
-  if (!store.state.token) {
+  if (!store.getters['user/isAuth']) {
     return redirect("/login")
-  }*/
+  }
 }

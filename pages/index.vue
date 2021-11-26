@@ -1,7 +1,6 @@
 <template>
   <div class="landing-page divide-x-0">
     <!-- body section -->
-    {{ user }}
     <section class="hero">
      <Hero/>
    </section>
@@ -42,7 +41,7 @@
         class="products w-full lg:w-5/6 lg:grid lg:grid-cols-3 px-3 lg:pr-10"
       >
         <div class="cursor-pointer transform hover:translate-x-2 hover:translate-y-1 duration-1000" v-for="cars in allCars" :key="cars.slug">
-          <Car :name="cars.name" :slug="cars.slug" :details="cars.details" :likes="cars.likes"/>
+          <Cars :name="cars.name" :slug="cars.slug" :details2="cars.details" :likes="cars.likes"/>
         </div>
       </div>
     </div>
@@ -53,14 +52,14 @@
 import {mapGetters} from "vuex";
 import Hero from "@/components/Hero.vue";
 import Category from "@/components/Category.vue";
-import Car from "@/components/Cars.vue";
+import Cars from "@/components/Cars.vue";
 
 export default {
   name: 'cars',
   components: {
     Hero,
     Category,
-    Car,
+    Cars,
   },
 
   async fetch({store}) {
