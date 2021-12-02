@@ -12,6 +12,7 @@
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.30.0",
+    "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.15.1",
     "js-cookie": "^3.0.1",
     "nuxt": "^2.15.7"

@@ -21,12 +21,12 @@ const actions = {
 
     const expiryTime = new Date(new Date().getTime() + expires_in * 1000)
 
-    cookies.set("x-access-token", token, {expires: expiryTime})
+    // cookies.set("x-access-token", token, {expires: expiryTime})
+    this.$cook.set('x-access-token',token,{expires:expiryTime})
 
-    commit("SET_TOKEN", +"Barer" + token)
+    commit("SET_TOKEN", +"Bearer" + token)
   },
 
-  // refresh token when refresh page
   async refreshToken({dispatch}) {
     let res = await this.$axios.post('refresh')
 
