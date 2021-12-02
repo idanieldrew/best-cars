@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="divide-x-0 divide-gray-300 container mx-auto">
-      <div class="flex flex-col container mx-auto">
+      <!-- <div class="flex flex-col container mx-auto">
         <img
           class="main-image w-7/12 mx-auto block rounded-lg"
           :src="mainSrc"
@@ -26,9 +26,9 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
       <div>
-        <Car :name="car.name" :description="car.description"/>
+        <Car :name="car.name" :description="car.description" :details="car.details"/>
       </div>
     </div>
     <form @submit.prevent="addComment">
@@ -103,7 +103,8 @@ export default {
     // add comment
     addComment(value) {
       if (value.replies) {
-        this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {value})
+        let content = value.content;
+        this.$axios.post("/cars/" + this.$route.params.slug + "/comment", {content})
           .then(() => {
             this.successMes()
           }).catch((e) => alert(e))

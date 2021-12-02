@@ -35,6 +35,10 @@ const actions = {
 
     dispatch('setToken', token, expires_in)
   },
+
+  g({app}){
+    console.log(app,5)
+  }
 }
 
 export default {
