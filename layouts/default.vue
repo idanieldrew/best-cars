@@ -1,5 +1,6 @@
 <template>
   <div class="h-full">
+    {{ $store.state.user.token }}
     <Navbar />
     <nuxt />
     <Footer/>
@@ -15,11 +16,5 @@ export default {
     Navbar,
     Footer,
   },
-
-  data(){
-    return{
-      // x : cookies.get('x-access-token')
-    }
-  }
 };
 </script>
