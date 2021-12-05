@@ -3,7 +3,11 @@ export default function ({store, redirect, app}) {
 
   if (!token) {
     store.dispatch('user/refreshToken')
-      .catch((e) => console.log(787))
+      .catch((e) => {
+        console.log(784)
+        // store.dispatch('logout')
+        // redirect('/login')
+      })
   }
-  store.commit('user/SET_TOKEN', +"Bearer" + token)
+  store.commit('user/SET_TOKEN', token)
 }

@@ -3,7 +3,8 @@ const state = () => ({
 })
 
 const getters = {
-  isAuth: state => !!state.token
+  isAuth: state => !!state.token,
+  token: state => state.token
 }
 
 const mutations = {
@@ -14,14 +15,14 @@ const mutations = {
 
 const actions = {
   //  set token and set cookie
-  setToken({commit}, token, expires_in) {
+  setToken({commit}, token, expires_in=1000) {
     this.$axios.setToken(token, "Bearer")
 
     const expiryTime = new Date(new Date().getTime() + expires_in * 1000)
 
     this.$cook.set('x-access-token',token,{expires:expiryTime})
 
-    commit("SET_TOKEN", +"Bearer" + token)
+    commit("SET_TOKEN",token)
   },
 
   async refreshToken({dispatch}) {
@@ -32,7 +33,6 @@ const actions = {
 
     dispatch('setToken', token, expires_in)
   },
-
 }
 
 export default {
