@@ -1,13 +1,12 @@
-export default function ({store, redirect, app}) {
-  const token = app.$cook.get('x-access-token')
+export default function ({store, redirect, app,$axios})  {
+  const token = store.getters['user/token'];
 
-  if (!token) {
-    store.dispatch('user/refreshToken')
-      .catch((e) => {
-        console.log(784)
-        // store.dispatch('logout')
-        // redirect('/login')
-      })
+  if (process.server) {
+    if (token) {
+      $axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    } else {
+      delete $axios.defaults.headers.common.Authorization;
+    }
   }
-  store.commit('user/SET_TOKEN', token)
 }
+

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
+    "@nuxtjs/auth-next": "5.0.0-1637745161.ea53f98",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.30.0",
     "cookie-universal-nuxt": "^2.1.5",

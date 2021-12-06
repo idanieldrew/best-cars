@@ -1,3 +1,5 @@
+import Cookie from "js-cookie";
+
 const state = () => ({
   token: null
 })
@@ -16,13 +18,10 @@ const mutations = {
 const actions = {
   //  set token and set cookie
   setToken({commit}, token, expires_in=1000) {
-    this.$axios.setToken(token, "Bearer")
-
     const expiryTime = new Date(new Date().getTime() + expires_in * 1000)
 
-    this.$cook.set('x-access-token',token,{expires:expiryTime})
-
-    commit("SET_TOKEN",token)
+    commit("SET_TOKEN", token)
+    Cookie.set('token', token, {expires: expiryTime})
   },
 
   async refreshToken({dispatch}) {

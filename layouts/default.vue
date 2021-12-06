@@ -1,5 +1,6 @@
 <template>
   <div class="h-full">
+    {{ $store.state.user.token}}
     <Navbar />
     <nuxt />
     <Footer/>

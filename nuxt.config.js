@@ -33,6 +33,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,23 +43,24 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/axios',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    /*// https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',*/
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['cookie-universal-nuxt', {alias: 'cook'}]
+    // ['cookie-universal-nuxt', {alias: 'cook'}]
   ],
-
+/*
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseUrl: 'http://localhost:8000/api'
-  },
+  },*/
 
   router:{
     middleware: 'refreshToken'
