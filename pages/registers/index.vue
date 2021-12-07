@@ -12,7 +12,6 @@ export default {
   components: {
     Register
   },
-  middleware: "auth",
   layout: 'login',
 
   methods: {

@@ -18,6 +18,13 @@
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
+          موبایل
+        </label>
+        <input class="border border-gray-500 p-3 rounded-md" type="number" placeholder="09121234562" required
+               v-model="form.phone"/>
+      </div>
+      <div class="mx-auto container my-5">
+        <label class="block pl-72 my-2">
           رمز
         </label>
         <input class="border border-gray-500 p-3 rounded-md" type="password" placeholder="12345678" required
@@ -48,6 +55,7 @@ export default {
     return {
       form: {
         name: "",
+        phone: "",
         email: "",
         password: "",
       }

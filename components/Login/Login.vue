@@ -4,10 +4,10 @@
     <form @submit.prevent="signIn">
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
-          ایمیل
+          ایمیل یا موبایل
         </label>
-        <input class="border border-gray-500 p-3 rounded-md" type="email" placeholder="email@email.com" required
-               v-model="form.email"/>
+        <input class="border border-gray-500 p-3 rounded-md" type="text" placeholder="email@email.com" required
+               v-model="form.login"/>
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       form: {
-        email: "",
+        login: "",
         password: "",
       }
     };
