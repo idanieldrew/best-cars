@@ -16,7 +16,8 @@
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.15.1",
     "js-cookie": "^3.0.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vee-validate": "^3.4.14"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.0",
