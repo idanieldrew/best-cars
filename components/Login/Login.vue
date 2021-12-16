@@ -18,7 +18,7 @@
     <form @submit.prevent="signIn">
       <div class="mx-auto container my-5">
         <label class="block pl-56 my-2"> ایمیل یا موبایل </label>
-        <validation-provider rules="required" v-slot="{errors}">
+        <validation-provider rules="required|email" v-slot="{errors}">
           <input
             class="border border-gray-500 p-3 rounded-md"
             type="text"
@@ -34,7 +34,7 @@
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2"> رمز </label>
-        <validation-provider rules="min" v-slot="{errors}">
+        <validation-provider rules="min:8" v-slot="{errors}">
           <input
             class="border border-gray-500 p-3 rounded-md"
             type="password"
@@ -69,18 +69,16 @@
 
 <script>
 import {extend, ValidationProvider} from 'vee-validate';
-import {required} from 'vee-validate/dist/rules'
+import {required,email} from 'vee-validate/dist/rules'
 
-extend('required', {
-  ...required,
-  message: 'اجباری'
-});
 
 extend('min', {
-  validate(password) {
-    return password.length >= 8
+  validate(password, {length}) {
+    return password.length >= length
   },
-  message: 'بیش تر از 8 تا'
+  params: ['length'],
+  message: 'بیش تر از 8 تا',
+  computesRequired: true
 });
 
 export default {

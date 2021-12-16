@@ -6,29 +6,49 @@
         <label class="block pl-72 my-2">
           نام
         </label>
-        <input class="border border-gray-500 p-3 rounded-md" type="text" placeholder="name" required
-               v-model="form.name"/>
+        <validation-provider rules="alpha|required" v-slot="{errors }">
+          <input class="border border-gray-500 p-3 rounded-md" type="text" placeholder="name" required
+                 v-model="name"/>
+          <span class="block text-red-500">
+            {{ errors[0] }}
+          </span>
+        </validation-provider>
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
           ایمیل
         </label>
-        <input class="border border-gray-500 p-3 rounded-md" type="email" placeholder="email@email.com" required
-               v-model="form.email"/>
+        <validation-provider rules="email|required" v-slot="{errors }">
+          <input class="border border-gray-500 p-3 rounded-md" type="email" placeholder="email@email.com" required
+                 v-model="email"/>
+          <span class="block text-red-500">
+            {{ errors[0] }}
+          </span>
+        </validation-provider>
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
           موبایل
         </label>
-        <input class="border border-gray-500 p-3 rounded-md" type="number" placeholder="09121234562" required
-               v-model="form.phone"/>
+        <validation-provider rules="numeric|required" v-slot="{errors }">
+          <input class="border border-gray-500 p-3 rounded-md" type="number" placeholder="09121234562" required
+                 v-model="phone"/>
+          <span class="block text-red-500">
+            {{ errors[0] }}
+          </span>
+        </validation-provider>
       </div>
       <div class="mx-auto container my-5">
         <label class="block pl-72 my-2">
           رمز
         </label>
-        <input class="border border-gray-500 p-3 rounded-md" type="password" placeholder="12345678" required
-               v-model="form.password"/>
+        <validation-provider rules="min:8" v-slot="{errors}">
+          <input class="border border-gray-500 p-3 rounded-md" type="password" placeholder="12345678" required
+                 v-model="password"/>
+          <span class="block text-red-500">
+            {{ errors[0] }}
+          </span>
+        </validation-provider>
       </div>
       <div class="my-3">
         <button type="submit"
@@ -49,22 +69,55 @@
 </template>
 
 <script>
+import {extend, ValidationProvider} from "vee-validate";
+import {alpha, email, numeric, required} from "vee-validate/dist/rules";
+
+extend('alpha', {
+  ...alpha,
+  message: 'مسخره بازی در نیار'
+});
+
+extend('numeric', {
+  ...numeric,
+  message: 'فقط عدد بزار'
+});
+
+extend('required', {
+  ...required,
+  message: 'اجباری'
+});
+
+extend('email', {
+  ...email,
+  message: 'ایمیل درست بزار'
+});
+
+extend('min', {
+  validate(password, {length}) {
+    return password.length >= length
+  },
+  params: ['length'],
+  message: 'بیش تر از 8 تا',
+  computesRequired: true
+});
 export default {
   name: 'register',
   data() {
     return {
-      form: {
-        name: "",
-        phone: "",
-        email: "",
-        password: "",
-      }
+      name: '',
+      email: '',
+      phone: '',
+      password: '',
     };
+  },
+
+  components: {
+    ValidationProvider
   },
 
   methods: {
     signUp() {
-      this.$emit('doRegister', this.form)
+      this.$emit('doRegister', this.name, this.email, this.phone.this.password)
     },
   }
 }
